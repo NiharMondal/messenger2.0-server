@@ -6,9 +6,7 @@ const app = require('./app')
 const authRoute = require("./routes/authRoute");
 
 //use Router
-app.use("/user-register", authRoute);
+app.use("/api/messenger/users", authRoute);
 
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
+
 

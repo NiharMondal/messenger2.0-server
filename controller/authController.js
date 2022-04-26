@@ -1,38 +1,20 @@
+const AuthModel = require("../models/authModel");
 const formidable = require("formidable");
 const validator = require("validator");
-module.exports.userRegister = (req, res) => {
-  const form = formidable();
-  form.parse(req, (error, fields, files) => {
-    const { userName, email, password, confirmPassword } = fields;
-    const { profilePic } = files;
-    const errors = [];
 
-    if (!userName) {
-      errors.push("Enter your Name");
-    }
-    if (!email) {
-      errors.push("Enter your Email address");
-    }
-    if (!password) {
-      errors.push("Enter Password");
-    }
-    if (!confirmPassword) {
-      errors.push("Confirm password is not provided");
-    }
-    if (password && confirmPassword && password !== confirmPassword) {
-      errors.push("Confirm password doesn't match");
-    }
-    if (password && password.length < 6) {
-      errors.push("Password must be 6 charectar or more");
-    }
-    if (Object.keys(files).length === 0) {
-      errors.push("Please provide your profile picture");
-    }
-    if (errors.length > 0) {
-      res.json({ error: {errorMessage: errors} });
-    } else {
-      const getImageName = profilePic.originalFilename;
-      console.log(getImageName);
-    }
-  });
+module.exports.userRegister = async (req, res) => {
+  const { userName, email, password, confirmPassword, image } = req.body;
+  try {
+    const result = await AuthModel.create({
+      userName,
+      password,
+      email,
+      confirmPassword,
+      image,
+    });
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+    console.log(error);
+  }
 };
