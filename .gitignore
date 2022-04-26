@@ -1,2 +1,6 @@
 /node_modules
+<<<<<<< HEAD
+=======
+*.env
+>>>>>>> 2f4945e2c824e4a2616113aca85c88d5cf29b980
 /db
