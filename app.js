@@ -6,7 +6,7 @@ const cors = require("cors");
 const connectDB = require("./db/db");
 const dotenv = require("dotenv");
 
-dotenv.config({ path: "./db/configDB.env" });
+dotenv.config({ path: "./db/.env" });
 connectDB();
 
 // ========== initializing app ============
