@@ -15,7 +15,7 @@ const app = express();
 //middlewares
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static("static"));
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
@@ -26,5 +26,3 @@ app.listen(port, () => {
 });
 
 module.exports = app;
-
-

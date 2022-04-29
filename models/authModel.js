@@ -6,19 +6,20 @@ const registerSchema = new Schema(
   {
     userName: {
       type: String,
-      required: [true, "Enter User Name"],
+      required: true,
     },
     email: {
       type: String,
-      required: [true, "Enter email address"],
+      required: true,
     },
     password: {
       type: String,
-      required: [true, "Password must be 6 character"],
+      required: true,
     },
-    confirmPassword: {
-      type: String,
-      required: [true, "Password doesn't match"],
+
+    photo: {
+      data: Buffer,
+      contentType: String
     },
   },
   { timestamps: true }
