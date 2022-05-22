@@ -2,9 +2,10 @@
 
 const express = require("express");
 const cors = require("cors");
-
-const connectDB = require("./db/db");
+const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
+//import db
+const connectDB = require("./db/db");
 
 dotenv.config({ path: "./db/.env" });
 connectDB();
@@ -15,7 +16,9 @@ const app = express();
 //middlewares
 app.use(cors());
 app.use(express.json());
-app.use(express.static("static"));
+app.use(cookieParser());
+
+
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
